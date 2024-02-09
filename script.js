@@ -12,3 +12,10 @@ form.addEventListener('submit', e => {
     })
     .catch(error => console.error('Error!', error.message))
 })
+let docTitle = document.title;
+window.addEventListener("blur", () =>{
+  document.title = "Thanks for visitings us";
+})
+window.addEventListener("focus", () =>{
+  document.title = docTitle;
+})
