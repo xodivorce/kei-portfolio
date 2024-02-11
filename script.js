@@ -32,8 +32,4 @@ icon.onclick = function(){
     }else{
       icon.src = "assets/images/moon.png";
     }
-}
-
-function closePopup() {
-  document.getElementById('overlay').style.display = 'none';
-}
+  }

@@ -10,6 +10,9 @@ body{
     background-color: var(--primary-color);
     position: relative;
 }
+input,select{
+    background-color:var(--quadro-color);
+}
 h1{
     text-align: center;
     margin-top: 10px;
@@ -54,11 +57,13 @@ nav{
     --primary-color:#fafaffb8;
     --secondary-color:#d6d9eeb5;
     --triyo-color: #9caff9bd;
+    --quadro-color: #ffffff;
 }
 .dark-theme{
-    --primary-color:#1c25acc5;
+    --primary-color:#1c26acb1;
     --secondary-color:#25232336;
     --triyo-color: #455dbfe4;
+    --quadro-color: #c5ccf2c7;
 }
 .buttons{
     margin: 10px;
