@@ -94,7 +94,7 @@ nav{
     align-items: center;
 }
 
-.loader {
+.loader{
     border: 5px solid #070707;
     border-top: 5px solid rgba(29, 29, 32, 0.2);
     border-radius: 50%;
