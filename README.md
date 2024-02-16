@@ -24,7 +24,47 @@ $ sudo port install git
 ```code
 git clone (HTTPS or SSH link from the repository:(https://github.com/xodivorce/kei-portfolio))
 ```
-6. Using a Self Signed SSL in dev server is highly recommended as some of the site features only works with secure https protocol
+6. var sheetName = 'Sheet1'
+		var scriptProp = PropertiesService.getScriptProperties()
+
+		function intialSetup () {
+		  var activeSpreadsheet = SpreadsheetApp.getActiveSpreadsheet()
+		  scriptProp.setProperty('key', activeSpreadsheet.getId())
+		}
+
+		function doPost (e) {
+		  var lock = LockService.getScriptLock()
+		  lock.tryLock(10000)
+
+		  try {
+			var doc = SpreadsheetApp.openById(scriptProp.getProperty('key'))
+			var sheet = doc.getSheetByName(sheetName)
+
+			var headers = sheet.getRange(1, 1, 1, sheet.getLastColumn()).getValues()[0]
+			var nextRow = sheet.getLastRow() + 1
+
+			var newRow = headers.map(function(header) {
+			  return header === 'timestamp' ? new Date() : e.parameter[header]
+			})
+
+			sheet.getRange(nextRow, 1, 1, newRow.length).setValues([newRow])
+
+			return ContentService
+			  .createTextOutput(JSON.stringify({ 'result': 'success', 'row': nextRow }))
+			  .setMimeType(ContentService.MimeType.JSON)
+		  }
+
+		  catch (e) {
+			return ContentService
+			  .createTextOutput(JSON.stringify({ 'result': 'error', 'error': e }))
+			  .setMimeType(ContentService.MimeType.JSON)
+		  }
+
+		  finally {
+			lock.releaseLock()
+		  }
+		}
+7.  Using a Self Signed SSL in dev server is highly recommended as some of the site features only works with secure https protocol
 
 ⭕ Noticed any Bugs? or Want to give me some suggetions? always feel free to open an issue...!!
 
