@@ -62,12 +62,24 @@ nav {
   --secondary-color: #d6d9eeb5;
   --triyo-color: #9caff9bd;
   --quadro-color: #ffffff;
+
+  /*additional for future*/
+  --fifth-coour: #d14370;
+  --ace-colour: #187de9;
+  --seventh-colour: #1897d6;
+  --eightth-colour: #000000;
 }
 .dark-theme {
   --primary-color: #1c26acb1;
   --secondary-color: #25232336;
   --triyo-color: #455dbfe4;
   --quadro-color: #c5ccf2c7;
+
+  /*additional for future*/
+  --fifth-coour: #d14370;
+  --ace-colour: #187de9;
+  --seventh-colour: #1897d6;
+  --eightth-colour: #000000;
 }
 .buttons {
   margin: 10px;
