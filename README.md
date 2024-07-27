@@ -2,7 +2,7 @@
 
 ### Welcome to XODIVORCE. - deveoped by [@xodivorce](https://instagram.com/xodivorce) ✨
 [![status](https://img.shields.io/badge/status-active-brightgreen.svg?style=flat)](https://github.com/xodivorce/xodivorce-portfolio/)
-[![version](https://img.shields.io/badge/version-v1.1.2-yellow.svg?style=flat)](https://github.com/xodivorce/xodivorce-portfolio/)
+[![version](https://img.shields.io/badge/version-v1.1.3-yellow.svg?style=flat)](https://github.com/xodivorce/xodivorce-portfolio/)
 [![PRs](https://img.shields.io/badge/PRs-welcome-blue.svg?style=flat)](https://github.com/xodivorce/xodivorce-portfolio/)
 <br></br>
 
@@ -32,50 +32,50 @@ Want to jump in and sprinkle some magic on this project? Follow these steps:
 3. **Open a code Editor/IDE**:
    - Launch XAMPP and start Apache and MySQL:
      ```bash
-	 vscode, xcode, vim etc.
+   vscode, xcode, vim etc.
      ```
 4. **Set-Up Googke Sheet**:
    ```bash
    var sheetName = 'Sheet1'
-		var scriptProp = PropertiesService.getScriptProperties()
+    var scriptProp = PropertiesService.getScriptProperties()
 
-		function intialSetup () {
-		  var activeSpreadsheet = SpreadsheetApp.getActiveSpreadsheet()
-		  scriptProp.setProperty('key', activeSpreadsheet.getId())
-		}
+    function intialSetup () {
+      var activeSpreadsheet = SpreadsheetApp.getActiveSpreadsheet()
+      scriptProp.setProperty('key', activeSpreadsheet.getId())
+    }
 
-		function doPost (e) {
-		  var lock = LockService.getScriptLock()
-		  lock.tryLock(10000)
+    function doPost (e) {
+      var lock = LockService.getScriptLock()
+      lock.tryLock(10000)
 
-		  try {
-			var doc = SpreadsheetApp.openById(scriptProp.getProperty('key'))
-			var sheet = doc.getSheetByName(sheetName)
+      try {
+      var doc = SpreadsheetApp.openById(scriptProp.getProperty('key'))
+      var sheet = doc.getSheetByName(sheetName)
 
-			var headers = sheet.getRange(1, 1, 1, sheet.getLastColumn()).getValues()[0]
-			var nextRow = sheet.getLastRow() + 1
+      var headers = sheet.getRange(1, 1, 1, sheet.getLastColumn()).getValues()[0]
+      var nextRow = sheet.getLastRow() + 1
 
-			var newRow = headers.map(function(header) {
-			  return header === 'timestamp' ? new Date() : e.parameter[header]
-			})
+      var newRow = headers.map(function(header) {
+        return header === 'timestamp' ? new Date() : e.parameter[header]
+      })
 
-			sheet.getRange(nextRow, 1, 1, newRow.length).setValues([newRow])
+      sheet.getRange(nextRow, 1, 1, newRow.length).setValues([newRow])
 
-			return ContentService
-			  .createTextOutput(JSON.stringify({ 'result': 'success', 'row': nextRow }))
-			  .setMimeType(ContentService.MimeType.JSON)
-		  }
+      return ContentService
+        .createTextOutput(JSON.stringify({ 'result': 'success', 'row': nextRow }))
+        .setMimeType(ContentService.MimeType.JSON)
+      }
 
-		  catch (e) {
-			return ContentService
-			  .createTextOutput(JSON.stringify({ 'result': 'error', 'error': e }))
-			  .setMimeType(ContentService.MimeType.JSON)
-		  }
+      catch (e) {
+      return ContentService
+        .createTextOutput(JSON.stringify({ 'result': 'error', 'error': e }))
+        .setMimeType(ContentService.MimeType.JSON)
+      }
 
-		  finally {
-			lock.releaseLock()
-		  }
-		}
+      finally {
+      lock.releaseLock()
+      }
+    }
    ```
 
  5. **View Locally**:
